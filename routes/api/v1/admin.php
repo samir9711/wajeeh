@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/update',       [ContactDepartmentController::class, 'update']);
         Route::post('/activate',     [ContactDepartmentController::class, 'activate']);
         Route::post('/deactivate',   [ContactDepartmentController::class, 'deactivate']);
-        Route::delete('/destroy',    [ContactDepartmentController::class, 'delete']);
+        Route::delete('/destroy',    [ContactDepartmentController::class, 'destroy']);
     });
 
     Route::prefix('product')->middleware('auth:admin')->group(function () {
@@ -56,7 +56,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/update',       [ProductController::class, 'update']);
         Route::post('/activate',     [ProductController::class, 'activate']);
         Route::post('/deactivate',   [ProductController::class, 'deactivate']);
-        Route::delete('/destroy',    [ProductController::class, 'delete']);
+        Route::delete('/destroy',    [ProductController::class, 'destroy']);
     });
 
 
