@@ -11,6 +11,8 @@ use App\Exceptions\Handler;
 class AppServiceProvider extends ServiceProvider
 {
    protected $facades = [
+    'MessageService' => \App\Services\Model\Message\MessageService::class,
+
     'UserService' => \App\Services\Model\User\UserService::class,
 
     'ProductService' => \App\Services\Model\Product\ProductService::class,

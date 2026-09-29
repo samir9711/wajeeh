@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 
 use App\Http\Controllers\ContactDepartment\ContactDepartmentController;
 use App\Http\Controllers\ContactInfo\ContactInfoController;
+use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,14 @@ Route::prefix('admin')->group(function () {
         Route::post('/deactivate',   [ProductController::class, 'deactivate']);
         Route::delete('/destroy',    [ProductController::class, 'destroy']);
     });
+
+    Route::prefix('message')->middleware('auth:admin')->group(function () {
+        Route::get('/all/paginated', [MessageController::class, 'allPaginated']);
+        Route::get('/all',           [MessageController::class, 'all']);
+        Route::post('/show',         [MessageController::class, 'show']);
+       Route::delete('/destroy',     [MessageController::class, 'destroy']);
+    });
+
 
 
 

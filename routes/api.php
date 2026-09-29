@@ -74,3 +74,5 @@ Route::prefix('user')->group(function () {
     Route::post('/deactivate',   [\App\Http\Controllers\User\UserController::class, 'deactivate']);
 });
 */
+
+// Message PUBLIC ROUTES
