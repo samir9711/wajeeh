@@ -6,6 +6,7 @@ use App\Facades\Services\Admin\AdminFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FatherCrudController;
 use App\Http\Requests\Model\StoreAdminRequest;
+use App\Http\Requests\Model\UpdateAdminProfileRequest;
 use Illuminate\Http\Request;
 
 class AdminController extends FatherCrudController
@@ -15,5 +16,20 @@ class AdminController extends FatherCrudController
         $this->service = AdminFacade::class;
         $this->createRequest = StoreAdminRequest::class;
         $this->updateRequest = StoreAdminRequest::class;
+    }
+
+    public function updateProfile(UpdateAdminProfileRequest $request)
+    {
+        $admin = $request->user('admin');
+
+        $admin = AdminFacade::updateProfile(
+            $admin,
+            $request->validated()
+        );
+
+        return response()->json([
+            'message' => 'تم تحديث البروفايل بنجاح.',
+            'data' => new \App\Http\Resources\Model\AdminResource($admin),
+        ]);
     }
 }

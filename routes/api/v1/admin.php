@@ -3,6 +3,7 @@
 
 
 use App\Http\Controllers\AboutUs\AboutUsController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AdminAuthController;
 
 use App\Http\Controllers\ContactDepartment\ContactDepartmentController;
@@ -20,6 +21,7 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AdminAuthController::class, 'login']);
 
     Route::middleware('auth:admin')->group(function () {
+        Route::post('/profile/update-me', [AdminController::class, 'updateProfile']);
         Route::post('logout', [AdminAuthController::class, 'logout']);
     });
 
