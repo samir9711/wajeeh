@@ -22,12 +22,18 @@ class AdminService extends BasicCrudService
         $this->resource = AdminResource::class;
     }
 
+    public function getProfile(Admin $admin): Admin
+    {
+        return $admin->fresh();
+    }
+
+
 
     public function updateProfile(Admin $admin, array $data): Admin
     {
         return DB::transaction(function () use ($admin, $data) {
 
-            
+
             $admin->name = $data['name'];
             $admin->email = $data['email'];
 

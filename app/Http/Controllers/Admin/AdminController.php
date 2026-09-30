@@ -18,6 +18,18 @@ class AdminController extends FatherCrudController
         $this->updateRequest = StoreAdminRequest::class;
     }
 
+    public function profile()
+    {
+        $admin = request()->user('admin');
+
+        $admin = AdminFacade::getProfile($admin);
+
+        return response()->json([
+            'message' => 'تم جلب بيانات البروفايل بنجاح.',
+            'data' => new \App\Http\Resources\Model\AdminResource($admin),
+        ]);
+    }
+
     public function updateProfile(UpdateAdminProfileRequest $request)
     {
         $admin = $request->user('admin');

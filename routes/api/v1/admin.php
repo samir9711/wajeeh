@@ -21,6 +21,7 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AdminAuthController::class, 'login']);
 
     Route::middleware('auth:admin')->group(function () {
+        Route::get('/profile/me', [AdminController::class, 'profile']);
         Route::post('/profile/update-me', [AdminController::class, 'updateProfile']);
         Route::post('logout', [AdminAuthController::class, 'logout']);
     });
